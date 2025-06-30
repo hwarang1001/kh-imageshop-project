@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -15,9 +17,9 @@
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<div align="center">
 		<h2>
-			<spring:message code="codegroup.header.register" />
+			<spring:message code="codegroup.header.modify" />
 		</h2>
-		<form:form modelAttribute="codeGroup" action="register">
+		<form:form modelAttribute="codeGroup" action="modify">
 			<table>
 				<tr>
 					<td><spring:message code="codegroup.groupCode" /></td>
@@ -31,8 +33,8 @@
 				</tr>
 			</table>
 			<div>
-				<button type="submit" id="btnRegister">
-					<spring:message code="action.register" />
+				<button type="submit" id="btnModify">
+					<spring:message code="action.modify" />
 				</button>
 				<button type="submit" id="btnList">
 					<spring:message code="action.list" />
@@ -46,7 +48,7 @@
 	<script>
 		$(document).ready(function() {
 			var formObj = $("#codeGroup");
-			$("#btnRegister").on("click", function() {
+			$("#btnModify").on("click", function() {
 				formObj.submit();
 			});
 			$("#btnList").on("click", function() {
@@ -54,5 +56,6 @@
 			});
 		});
 	</script>
+
 </body>
 </html>

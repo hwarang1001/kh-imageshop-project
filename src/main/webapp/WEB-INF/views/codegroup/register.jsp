@@ -9,6 +9,7 @@
 <title>Image Shop</title>
 <!-- <script type="text/javascript" src="/js/test.js"></script> -->
 <link rel="stylesheet" href="/css/codegroup.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -30,15 +31,15 @@
 					<td><font color="red"><form:errors path="groupName" /></font></td>
 				</tr>
 			</table>
-			<div>
-				<button type="submit" id="btnRegister">
-					<spring:message code="action.register" />
-				</button>
-				<button type="submit" id="btnList">
-					<spring:message code="action.list" />
-				</button>
-			</div>
 		</form:form>
+		<div>
+			<button type="submit" id="btnRegister">
+				<spring:message code="action.register" />
+			</button>
+			<button type="submit" id="btnList">
+				<spring:message code="action.list" />
+			</button>
+		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script>
@@ -47,9 +48,8 @@
 			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
-			$("#btnList").on("click", function(e) {
-				e.preventDefault();
-				self.location = "list";
+			$("#btnList").on("click", function() {
+				self.location = "/codegroup/list"; // URL 소문자 맞춤
 			});
 		});
 	</script>

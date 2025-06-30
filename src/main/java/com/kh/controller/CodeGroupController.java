@@ -17,7 +17,7 @@ public class CodeGroupController {
 	@Autowired
 	private CodeGroupService service;
 
-	// 등록 페이지
+	// 코드그룹 등록 페이지
 	@GetMapping("/register")
 	public String registerForm(Model model) throws Exception {
 		CodeGroup codeGroup = new CodeGroup();
@@ -25,7 +25,7 @@ public class CodeGroupController {
 		return "codegroup/register";
 	}
 
-	// 등록 처리
+	// 코드그룹 등록 처리
 	@PostMapping("/register")
 	public String register(CodeGroup codeGroup, RedirectAttributes rttr) throws Exception {
 		service.register(codeGroup);
@@ -34,27 +34,28 @@ public class CodeGroupController {
 		return "redirect:/codegroup/list";
 	}
 
-	// 목록 페이지
+	// 코드그룹 목록 페이지
 	@GetMapping("/list")
-	public void list(Model model) throws Exception {
+	public String list(Model model) throws Exception {
 		model.addAttribute("list", service.list());
+		return "codegroup/list";
 	}
 
-	// 상세 페이지
+	// 코드그룹 상세 페이지
 	@GetMapping("/read")
 	public String read(CodeGroup codeGroup, Model model) throws Exception {
 		model.addAttribute(service.read(codeGroup));
 		return "codegroup/read";
 	}
 
-	// 수정 페이지
+	// 코드그룹 수정 페이지
 	@GetMapping("/modify")
 	public String modifyForm(CodeGroup codeGroup, Model model) throws Exception {
 		model.addAttribute(service.read(codeGroup));
 		return "codegroup/modify";
 	}
 
-	// 수정 처리
+	// 코드그룹 수정 처리
 	@PostMapping("/modify")
 	public String modify(CodeGroup codeGroup, RedirectAttributes rttr) throws Exception {
 		service.modify(codeGroup);
@@ -62,7 +63,7 @@ public class CodeGroupController {
 		return "redirect:/codegroup/list"; 
 	}
 
-	// 삭제 처리
+	// 코드그룹 삭제 처리
 	@PostMapping("/remove")
 	public String remove(CodeGroup codeGroup, RedirectAttributes rttr) throws Exception {
 		service.remove(codeGroup);
