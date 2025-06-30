@@ -19,9 +19,10 @@ public class CodeGroupController {
 
 	// 등록 페이지
 	@GetMapping("/register")
-	public void registerForm(Model model) throws Exception {
+	public String registerForm(Model model) throws Exception {
 		CodeGroup codeGroup = new CodeGroup();
 		model.addAttribute(codeGroup);
+		return "codegroup/register";
 	}
 
 	// 등록 처리
@@ -41,14 +42,16 @@ public class CodeGroupController {
 
 	// 상세 페이지
 	@GetMapping("/read")
-	public void read(CodeGroup codeGroup, Model model) throws Exception {
+	public String read(CodeGroup codeGroup, Model model) throws Exception {
 		model.addAttribute(service.read(codeGroup));
+		return "codegroup/read";
 	}
 
 	// 수정 페이지
 	@GetMapping("/modify")
-	public void modifyForm(CodeGroup codeGroup, Model model) throws Exception {
+	public String modifyForm(CodeGroup codeGroup, Model model) throws Exception {
 		model.addAttribute(service.read(codeGroup));
+		return "codegroup/modify";
 	}
 
 	// 수정 처리

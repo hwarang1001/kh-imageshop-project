@@ -40,15 +40,16 @@
 			</div>
 		</form:form>
 	</div>
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
 	<script>
 		$(document).ready(function() {
 			var formObj = $("#codeGroup");
 			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
-			$("#btnList").on("click", function(e) {
-				e.preventDefault();
+			$("#btnList").on("click", function() {
 				self.location = "list";
 			});
 		});
