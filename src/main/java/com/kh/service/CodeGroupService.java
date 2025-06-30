@@ -1,12 +1,12 @@
-package com.kh.mapper;
+package com.kh.service;
 
 import java.util.List;
 
 import com.kh.domain.CodeGroup;
 
-public interface CodeGroupMapper { 
+public interface CodeGroupService {
 	// 등록 처리
-	public void create(CodeGroup codeGroup) throws Exception;
+	public void register(CodeGroup codeGroup) throws Exception;
 
 	// 목록 페이지
 	public List<CodeGroup> list() throws Exception;
@@ -15,8 +15,8 @@ public interface CodeGroupMapper {
 	public CodeGroup read(CodeGroup codeGroup) throws Exception;
 
 	// 수정 처리
-	public void update(CodeGroup codeGroup) throws Exception;
+	public void modify(CodeGroup codeGroup) throws Exception;
 
 	// 삭제 처리
-	public void delete(CodeGroup codeGroup) throws Exception;
+	public void remove(CodeGroup codeGroup) throws Exception;
 }
