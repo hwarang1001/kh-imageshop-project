@@ -11,30 +11,37 @@
 <title>Image Shop</title>
 <!-- <script type="text/javascript" src="/js/test.js"></script> -->
 <link rel="stylesheet" href="/css/codegroup.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<jsp:include page="/WEB-INF/views/common/menu.jsp" />
 	<div align="center">
 		<h2>
-			<spring:message code="codegroup.header.modify" />
+			<spring:message code="codedetail.header.register" />
 		</h2>
-		<form:form modelAttribute="codeGroup" action="modify">
+		<form:form modelAttribute="codeDetail" action="register">
 			<table>
 				<tr>
-					<td><spring:message code="codegroup.groupCode" /></td>
-					<td><form:input path="groupCode" /></td>
+					<td><spring:message code="codedetail.groupCode" /></td>
+					<td><form:select path="groupCode" items="${groupCodeList}"
+							itemValue="value" itemLabel="label" /></td>
 					<td><font color="red"><form:errors path="groupCode" /></font></td>
 				</tr>
 				<tr>
-					<td><spring:message code="codegroup.groupName" /></td>
-					<td><form:input path="groupName" /></td>
-					<td><font color="red"><form:errors path="groupName" /></font></td>
+					<td><spring:message code="codedetail.codeValue" /></td>
+					<td><form:input path="codeValue" /></td>
+					<td><font color="red"><form:errors path="codeValue" /></font></td>
+				</tr>
+				<tr>
+					<td><spring:message code="codedetail.codeName" /></td>
+					<td><form:input path="codeName" /></td>
+					<td><font color="red"><form:errors path="codeName" /></font></td>
 				</tr>
 			</table>
 			<div>
-				<button type="submit" id="btnModify">
-					<spring:message code="action.modify" />
+				<button type="submit" id="btnRegister">
+					<spring:message code="action.register" />
 				</button>
 				<button type="submit" id="btnList">
 					<spring:message code="action.list" />
@@ -47,15 +54,16 @@
 
 	<script>
 		$(document).ready(function() {
-			var formObj = $("#codeGroup");
-			$("#btnModify").on("click", function() {
+			var formObj = $("#codeDetail");
+			$("#btnRegister").on("click", function() {
 				formObj.submit();
 			});
-			$("#btnList").on("click", function() {
-				self.location = "list";
+
+			$("#btnList").on("click", function(e) {
+				e.preventDefault();
+				self.location = "/codedetail/list";
 			});
 		});
 	</script>
-
 </body>
 </html>

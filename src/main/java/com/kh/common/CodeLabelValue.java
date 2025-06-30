@@ -1,14 +1,10 @@
 package com.kh.common;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @RequiredArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class CodeLabelValue {
 	private final String value;
 	private final String label;
