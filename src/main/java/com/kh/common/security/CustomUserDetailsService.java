@@ -17,7 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private MemberMapper memberMapper;
 
-	// 사용자 정의 유저 상세 클래스 메서드-loadUserByUsername의 Username은 userId이다.
+	// 사용자 정의 유저 상세 클래스 메서드
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		log.info("Load User By UserId : " + userId);

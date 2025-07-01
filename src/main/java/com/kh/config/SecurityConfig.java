@@ -39,10 +39,10 @@ public class SecurityConfig {
 		http.csrf().disable();
 
 		// 로그인 인가정책
-		http.authorizeRequests().requestMatchers("/board/**").authenticated();
-		http.authorizeRequests().requestMatchers("/manager/**").hasRole("MANAGER");
-		http.authorizeRequests().requestMatchers("/admin/**").hasRole("ADMIN");
-		http.authorizeRequests().anyRequest().permitAll();
+//		http.authorizeRequests().requestMatchers("/board/**").authenticated();
+//		http.authorizeRequests().requestMatchers("/manager/**").hasRole("MANAGER");
+//		http.authorizeRequests().requestMatchers("/admin/**").hasRole("ADMIN");
+//		http.authorizeRequests().anyRequest().permitAll();
 
 		// 로그인 설정
 		http.formLogin();

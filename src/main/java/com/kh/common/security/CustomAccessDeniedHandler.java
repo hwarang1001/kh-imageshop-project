@@ -20,6 +20,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		log.info("액세스 거부 처리기");
 		log.info("Redirect ... ");
 
-		response.sendRedirect("/error/accessError");
+		response.sendRedirect("/user/accessError");
 	}
 }
