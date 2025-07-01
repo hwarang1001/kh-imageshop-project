@@ -32,4 +32,7 @@ public interface MemberMapper {
 	
 	// 회원테이블 데이터 건수 조회 
 	public int countAll() throws Exception; 
+	
+	// 사용자 아이디 회원 정보 조회 
+	public Member readByUserId(String userId);
 }

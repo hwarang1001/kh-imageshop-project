@@ -21,6 +21,13 @@
 		<result property="userNo" column="user_no" />
 		<result property="auth" column="auth" />
 	</resultMap>
+	<!-- 사용자 아이디 회원 정보 조회 --> 
+	<select id="readByUserId" resultMap="memberMap"> 
+		SELECT mem.user_no, mem.user_id, user_pw, user_name, job, 
+		coin, enabled, reg_date, upd_date, auth 
+		FROM member mem LEFT OUTER JOIN member_auth auth ON mem.user_no = auth.user_no 
+		WHERE mem.user_id = #{userId} 
+	</select>
 	<!-- 등록 처리 -->
 	<insert id="create">
 		INSERT INTO member
@@ -70,7 +77,7 @@
 		DELETE FROM member_auth
 		WHERE user_no = #{userNo}
 	</delete>
-	<!-- 회원 테이블의 데이터 건수 조회 --> 
+	<!-- 회원 테이블 데이터 건수 조회 --> 
 	<select id="countAll" resultType="int"> 
 		SELECT count(*) 
 		FROM member 
