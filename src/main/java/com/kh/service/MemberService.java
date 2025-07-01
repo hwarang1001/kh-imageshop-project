@@ -19,4 +19,10 @@ public interface MemberService {
 
 	// 삭제 처리
 	public void remove(Member member) throws Exception;
+
+	// 회원 테이블 데이터 건수
+	public int countAll() throws Exception;
+
+	// 최초 관리자 생성
+	public void setupAdmin(Member member) throws Exception;
 }

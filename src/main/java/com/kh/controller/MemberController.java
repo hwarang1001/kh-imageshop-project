@@ -28,26 +28,26 @@ public class MemberController {
 	@Autowired
 	private CodeService codeService;
 
-	// 스프링 시큐리티의 비밀번호 암호처리기 
+	// 스프링 시큐리티의 비밀번호 암호처리기
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// 등록 페이지 
+	// 등록 페이지
 	@GetMapping("/register")
 	public void registerForm(Member member, Model model) throws Exception {
-		// 직업코드 목록을 조회하여 뷰에 전달 
+		// 직업코드 목록을 조회하여 뷰에 전달
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 		model.addAttribute("jobList", jobList);
 
 	}
 
-	// 등록 처리 
+	// 등록 처리
 	@PostMapping("/register")
 	public String register(@Validated Member member, BindingResult result, Model model, RedirectAttributes rttr)
 			throws Exception {
 		if (result.hasErrors()) {
-			// 직업코드 목록을 조회하여 뷰에 전달 
+			// 직업코드 목록을 조회하여 뷰에 전달
 			String groupCode = "A00";
 			List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 
@@ -55,7 +55,7 @@ public class MemberController {
 
 			return "user/register";
 		}
-		// 비밀번호 암호화 
+		// 비밀번호 암호화
 		String inputPassword = member.getUserPw();
 		member.setUserPw(passwordEncoder.encode(inputPassword));
 
@@ -65,22 +65,22 @@ public class MemberController {
 		return "redirect:/user/registerSuccess";
 	}
 
-	// 등록 성공 페이지 
+	// 등록 성공 페이지
 	@GetMapping("/registerSuccess")
 	public void registerSuccess(Model model) throws Exception {
 
 	}
 
-	// 목록 페이지 
+	// 목록 페이지
 	@GetMapping("/list")
 	public void list(Model model) throws Exception {
 		model.addAttribute("list", service.list());
 	}
 
-	// 상세 페이지 
+	// 상세 페이지
 	@GetMapping("/read")
 	public void read(Member member, Model model) throws Exception {
-		// 직업코드 목록을 조회하여 뷰에 전달 
+		// 직업코드 목록을 조회하여 뷰에 전달
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 
@@ -88,10 +88,10 @@ public class MemberController {
 		model.addAttribute(service.read(member));
 	}
 
-	//수정 페이지 
+	// 수정 페이지
 	@GetMapping("/modify")
 	public void modifyForm(Member member, Model model) throws Exception {
-		//직업코드 목록을 조회하여 뷰에 전달 
+		// 직업코드 목록을 조회하여 뷰에 전달
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 
@@ -99,7 +99,7 @@ public class MemberController {
 		model.addAttribute(service.read(member));
 	}
 
-	//수정 처리 
+	// 수정 처리
 	@PostMapping("/modify")
 	public String modify(Member member, RedirectAttributes rttr) throws Exception {
 		service.modify(member);
@@ -107,11 +107,38 @@ public class MemberController {
 		return "redirect:/user/list";
 	}
 
-	//삭제 처리 
+	// 삭제 처리
 	@PostMapping("/remove")
 	public String remove(Member member, RedirectAttributes rttr) throws Exception {
 		service.remove(member);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/user/list";
+	}
+
+	// 최초 관리자 등록 화면요청
+	@GetMapping("/setup")
+	public String setupAdminForm(Member member, Model model) throws Exception {
+		// 회원 테이블 데이터 건수 체크
+		if (service.countAll() == 0) {
+			return "user/setup";
+		}
+		// 최초 관리자를 생성할 수 없으면 실패 페이지 이동
+		return "user/setupFailure";
+	}
+
+	// 최초 관리자 등록
+	@PostMapping("/setup")
+	public String setupAdmin(Member member, RedirectAttributes rttr) throws Exception {
+		// 회원 테이블 데이터 건수 체크
+		if (service.countAll() == 0) {
+			String inputPassword = member.getUserPw();
+			member.setUserPw(passwordEncoder.encode(inputPassword));
+			member.setJob("00");
+			service.setupAdmin(member);
+			rttr.addFlashAttribute("userName", member.getUserName());
+			return "redirect:/user/registerSuccess";
+		}
+		// 최초 관리자를 생성할 수 없으면 실패 페이지 이동
+		return "redirect:/user/setupFailure";
 	}
 }

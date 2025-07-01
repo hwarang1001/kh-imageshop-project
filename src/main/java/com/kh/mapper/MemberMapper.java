@@ -29,4 +29,7 @@ public interface MemberMapper {
 
 	// 유저 권한 삭제
 	public void deleteAuth(Member member) throws Exception;
+	
+	// 회원테이블 데이터 건수 조회 
+	public int countAll() throws Exception; 
 }
