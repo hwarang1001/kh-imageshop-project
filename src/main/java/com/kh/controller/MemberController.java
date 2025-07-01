@@ -79,24 +79,24 @@ public class MemberController {
 
 	// 상세 페이지 
 	@GetMapping("/read")
-	public void read(int userNo, Model model) throws Exception {
+	public void read(Member member, Model model) throws Exception {
 		// 직업코드 목록을 조회하여 뷰에 전달 
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 
 		model.addAttribute("jobList", jobList);
-		model.addAttribute(service.read(userNo));
+		model.addAttribute(service.read(member));
 	}
 
 	//수정 페이지 
 	@GetMapping("/modify")
-	public void modifyForm(int userNo, Model model) throws Exception {
+	public void modifyForm(Member member, Model model) throws Exception {
 		//직업코드 목록을 조회하여 뷰에 전달 
 		String groupCode = "A00";
 		List<CodeLabelValue> jobList = codeService.getCodeList(groupCode);
 
 		model.addAttribute("jobList", jobList);
-		model.addAttribute(service.read(userNo));
+		model.addAttribute(service.read(member));
 	}
 
 	//수정 처리 
@@ -109,8 +109,8 @@ public class MemberController {
 
 	//삭제 처리 
 	@PostMapping("/remove")
-	public String remove(int userNo, RedirectAttributes rttr) throws Exception {
-		service.remove(userNo);
+	public String remove(Member member, RedirectAttributes rttr) throws Exception {
+		service.remove(member);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/user/list";
 	}

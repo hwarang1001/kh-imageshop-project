@@ -35,19 +35,18 @@ public class MemberServiceImpl implements MemberService {
 
 	// 상세 페이지
 	@Override
-	public Member read(int userNo) throws Exception {
-		return mapper.read(userNo);
+	public Member read(Member member) throws Exception {
+		return mapper.read(member);
 	}
 
 	// 수정 처리
 	@Transactional
 	@Override
 	public void modify(Member member) throws Exception {
+		// 회원정보 수정
 		mapper.update(member);
-		// 회원권한 수정
-		int userNo = member.getUserNo();
 		// 회원권한 삭제
-		mapper.deleteAuth(userNo);
+		mapper.deleteAuth(member);
 		List<MemberAuth> authList = member.getAuthList();
 		for (int i = 0; i < authList.size(); i++) {
 			MemberAuth memberAuth = authList.get(i);
@@ -60,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 				continue;
 			}
 			// 변경된 회원권한 추가
-			memberAuth.setUserNo(userNo);
+			memberAuth.setUserNo(member.getUserNo());
 			mapper.modifyAuth(memberAuth);
 		}
 	}
@@ -68,9 +67,9 @@ public class MemberServiceImpl implements MemberService {
 	// 삭제 처리
 	@Transactional
 	@Override
-	public void remove(int userNo) throws Exception {
+	public void remove(Member member) throws Exception {
 		// 회원 권한 삭제
-		mapper.deleteAuth(userNo);
-		mapper.delete(userNo);
+		mapper.deleteAuth(member);
+		mapper.delete(member);
 	}
 }

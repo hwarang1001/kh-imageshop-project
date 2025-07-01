@@ -16,7 +16,7 @@ public interface MemberMapper {
 	public List<Member> list() throws Exception;
 
 	// 유저 상세 페이지
-	public Member read(int userNo) throws Exception;
+	public Member read(Member member) throws Exception;
 
 	// 유저 권한 수정
 	public void modifyAuth(MemberAuth memberAuth) throws Exception;
@@ -25,8 +25,8 @@ public interface MemberMapper {
 	public void update(Member member) throws Exception;
 
 	// 유저 삭제 처리
-	public void delete(int userNo) throws Exception;
+	public void delete(Member member) throws Exception;
 
 	// 유저 권한 삭제
-	public void deleteAuth(int userNo) throws Exception;
+	public void deleteAuth(Member member) throws Exception;
 }

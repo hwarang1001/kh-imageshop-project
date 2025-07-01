@@ -12,11 +12,11 @@ public interface MemberService {
 	public List<Member> list() throws Exception;
 
 	// 상세 페이지
-	public Member read(int userNo) throws Exception;
+	public Member read(Member member) throws Exception;
 
 	// 수정 처리
 	public void modify(Member member) throws Exception;
 
 	// 삭제 처리
-	public void remove(int userNo) throws Exception;
+	public void remove(Member member) throws Exception;
 }

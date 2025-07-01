@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<div align="center">
+<div align="right">
 	<table>
 		<tr>
+			<!-- 회원 가입 메뉴 -->
 			<td width="80">
-				<a href="/"><spring:message code="header.home" /></a>
+				<a href="/user/register"><spring:message code="header.joinMember" /></a>
 			</td>
 		</tr>
 	</table>
