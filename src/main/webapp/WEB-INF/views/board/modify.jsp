@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" /></td>
+					<td><form:input path="writer" readonly="true"/></td>
 					<td><font color="red"><form:errors path="writer" /></font></td>
 				</tr>
 				<tr>
