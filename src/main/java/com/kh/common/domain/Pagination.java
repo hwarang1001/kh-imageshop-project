@@ -9,7 +9,7 @@ public class Pagination {
 	private int endPage; // 끝 페이지
 	private boolean prev; // 이전글 목록
 	private boolean next; // 다음글 목록
-	private int displayPageNum = 10; // 보여줄 페이지수
+	private int displayPageNum = 5; // 보여줄 페이지수
 	private PageRequest pageRequest; // 현재 페이지, 페이지 사이즈
 
 	public void setPageRequest(PageRequest pageRequest) {
