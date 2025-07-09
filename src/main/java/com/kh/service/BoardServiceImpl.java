@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.common.domain.PageRequest;
 import com.kh.domain.Board;
 import com.kh.mapper.BoardMapper;
 
@@ -21,8 +22,8 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시글 목록 페이지
 	@Override
-	public List<Board> list() throws Exception {
-		return mapper.list();
+	public List<Board> list(PageRequest pageRequest) throws Exception {
+		return mapper.list(pageRequest);
 	}
 
 	// 게시글 상세 페이지
@@ -41,5 +42,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void remove(Board board) throws Exception {
 		mapper.delete(board);
+	}
+
+	// 게시글 전체 건수 반환
+	@Override
+	public int count(PageRequest pageRequest) throws Exception {
+		return mapper.count(pageRequest);
 	}
 }

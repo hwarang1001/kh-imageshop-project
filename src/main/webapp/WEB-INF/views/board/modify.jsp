@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Image Shop</title>
-<!-- <script type="text/javascript" src="/js/test.js"></script> -->
+<!-- <script type="text/javascript" src="/js/test.js"></script>
+-->
 <link rel="stylesheet" href="/css/codegroup.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -24,7 +24,9 @@
 
 		<form:form modelAttribute="board" action="modify">
 			<form:hidden path="boardNo" />
-
+			<input type="hidden" id="page" name="page" value="${pgrq.page}">
+			<input type="hidden" id="sizePerPage" name="sizePerPage"
+				value="${pgrq.sizePerPage}">
 			<table>
 				<tr>
 					<td><spring:message code="board.title" /></td>
@@ -33,7 +35,7 @@
 				</tr>
 				<tr>
 					<td><spring:message code="board.writer" /></td>
-					<td><form:input path="writer" readonly="true"/></td>
+					<td><form:input path="writer" readonly="true" /></td>
 					<td><font color="red"><form:errors path="writer" /></font></td>
 				</tr>
 				<tr>
@@ -73,10 +75,11 @@
 			$("#btnModify").on("click", function() {
 				formObj.submit();
 			});
-			$("#btnList").on("click", function() {
-				self.location = "list";
-			});
 
+			$("#btnList").on("click", function() { 
+				// 페이징 관련 정보를 쿼리 파라미터로 전달 
+				self.location = "list${pgrq.toUriString()}";
+			});
 		});
 	</script>
 </body>
